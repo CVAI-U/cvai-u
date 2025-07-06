@@ -1,15 +1,15 @@
-import type { Config } from "tailwindcss";
+import type { NextConfig } from "next";
 
-const config: Config = {
-  content: [
-    "./pages/**/*.{js,ts,jsx,tsx}",
-    "./components/**/*.{js,ts,jsx,tsx}",
-    "./app/**/*.{js,ts,jsx,tsx}",
-  ],
-  theme: {
-    extend: {},
+const isGithub = process.env.NODE_ENV === "production";
+
+const nextConfig: NextConfig = {
+  output: "export",
+  basePath: isGithub ? "/cvai-u-website" : "",
+  assetPrefix: isGithub ? "/cvai-u-website/" : "",
+  trailingSlash: true,
+  images: {
+    unoptimized: true,  // disable built-in image optimization for static export
   },
-  plugins: [],
 };
 
-export default config;
+export default nextConfig;

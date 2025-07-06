@@ -6,6 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 import members from "@/data/members.json"
 import project from "@/data/projects.json";
 import { Menu, X } from "lucide-react";
+import Image from "next/image";
 
 export default function HomePage() {
   const [scrolled, setScrolled] = useState(false);
@@ -22,11 +23,7 @@ export default function HomePage() {
     return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
   }
 
-  function capitalizeEachWord(text: string): string {
-    return text.split(" ").map(capitalize).join(" ");
-  }
-
-    const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   const navLinks = [
     { href: "#projects", label: "Projects" },
@@ -62,7 +59,15 @@ export default function HomePage() {
 
       {/* Header */}
       <motion.header className={`fixed top-0 left-0 w-full z-50 px-4 sm:px-6 py-3 sm:py-4 flex items-center transition-all duration-500 ${scrolled ? "backdrop-blur-md bg-black/60 shadow-md" : "bg-transparent"}`}>
-        <motion.img src="images/CVAI-U_logo.jpg" alt="Logo" crossOrigin="anonymous" referrerPolicy="no-referrer" className={`transition-all duration-500 ${scrolled ? "w-10 h-10" : "w-14 h-14"}`} />
+        <motion.div className={`transition-all duration-500 ${scrolled ? "w-10 h-10" : "w-14 h-14"} relative`}>
+          <Image
+            src="/images/CVAI-U_logo.jpg"
+            alt="Logo"
+            fill
+            className="object-contain"
+            priority
+          />
+        </motion.div>
         <motion.a
           href="#"
           className={`ml-3 text-white font-bold transition-all duration-500
@@ -160,7 +165,20 @@ export default function HomePage() {
               <div key={i} className="px-4">
                 <div className="bg-white/10 rounded-xl p-6 shadow-lg backdrop-blur-md h-60 flex flex-col justify-center items-center">
                   <div className="w-20 h-20 bg-blue-500 rounded-full overflow-hidden mb-4">
-                    <img src={member.image} crossOrigin="anonymous" referrerPolicy="no-referrer" alt={`${member["first name"][0].toUpperCase()}${member["last name"][0].toUpperCase()}`} className="w-full h-full rounded-full object-cover" />
+                    <Image
+                      src={member.image} 
+                      crossOrigin="anonymous" 
+                      referrerPolicy="no-referrer" 
+                      alt={`${member["first name"][0].toUpperCase()}${member["last name"][0].toUpperCase()}`} 
+                      className="w-full h-full rounded-full object-cover" 
+                    />
+                    {/* <img 
+                      src={member.image} 
+                      crossOrigin="anonymous" 
+                      referrerPolicy="no-referrer" 
+                      alt={`${member["first name"][0].toUpperCase()}${member["last name"][0].toUpperCase()}`} 
+                      className="w-full h-full rounded-full object-cover" 
+                    /> */}
                   </div>
                   <h4 className="text-base sm:text-xl font-semibold">{capitalize(member["title"]) + " " + member["last name"].toUpperCase() + " " + capitalize(member["first name"])}</h4>
                   <p className="text-sm">{member.role}</p>
@@ -174,7 +192,7 @@ export default function HomePage() {
       {/* Contact */}
       <section id="contact" className="relative z-10 min-h-screen px-4 sm:px-6 py-16 sm:py-20 bg-gradient-to-br from-blue-900/80 to-black/80 backdrop-blur-sm text-white text-center flex flex-col justify-center">
         <h3 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6">Be Part of the Movement</h3>
-        <p className="max-w-lg mx-auto text-sm sm:text-base mb-6 sm:mb-8">We're a community of tech enthusiasts, problem solvers, and innovators. Learn, build, and lead with us.</p>
+        <p className="max-w-lg mx-auto text-sm sm:text-base mb-6 sm:mb-8">We&apos;re a community of tech enthusiasts, problem solvers, and innovators. Learn, build, and lead with us.</p>
         <a href="mailto:cvai.reda.ams@gmail.com" className="inline-block px-5 sm:px-6 py-2.5 sm:py-3 bg-white text-black font-semibold rounded-full shadow-md hover:bg-gray-200 transition-all mb-6 text-sm sm:text-base">Join Now</a>
         <p className="text-xs sm:text-sm">Email: <a href="mailto:cvai.reda.ams@gmail.com" className="underline">cvai.reda.ams@gmail.com</a></p>
         <p className="text-xs sm:text-sm">GitHub: <a href="https://github.com/CVAI-U" className="underline">Computer Vision and AI Unit</a></p>
