@@ -167,6 +167,8 @@ export default function HomePage() {
                   <div className="w-20 h-20 bg-blue-500 rounded-full overflow-hidden mb-4">
                     <Image
                       src={member.image} 
+                      width={80}
+                      height={80}
                       crossOrigin="anonymous" 
                       referrerPolicy="no-referrer" 
                       alt={`${member["first name"][0].toUpperCase()}${member["last name"][0].toUpperCase()}`} 
