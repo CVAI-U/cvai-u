@@ -53,7 +53,7 @@ export default function HomePage() {
   return (
     <div className="relative min-h-screen bg-cover bg-center scroll-smooth" style={{ backgroundImage: 'url(images/background.jpg)' }}>
       <div className="absolute inset-0 bg-black/70 z-0" />
-
+      
       {/* Header */}
       <motion.header
         className={`fixed top-0 left-0 w-full z-50 px-6 py-4 flex items-center transition-all duration-500 ${scrolled ? "backdrop-blur-md bg-black/60 shadow-md" : "bg-transparent"}`}
