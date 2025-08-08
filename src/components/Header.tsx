@@ -93,6 +93,14 @@ export default function Header({ scrolled }: { scrolled: boolean }) {
         <button onClick={() => setMenuOpen(!menuOpen)} className="text-black dark:text-white focus:outline-none">
           <Menu className="size-8 sm:size-6 md:size-7 max-sm:size-5" />
         </button>
+        {/* Dark Mode Toggle */}
+        <button
+          onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+          className="ml-2 text-black dark:text-white hover:text-yellow-500 dark:hover:text-yellow-400 transition-colors duration-300"
+          aria-label="Toggle Dark Mode"
+        >
+          {theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+        </button>
       </div>
 
       {/* Mobile Dropdown Menu */}
@@ -107,6 +115,7 @@ export default function Header({ scrolled }: { scrolled: boolean }) {
             <a href="#projects" className="block text-black dark:text-white hover:text-blue-500 dark:hover:text-blue-300 text-base max-sm:text-sm">Projects</a>
             <a href="#members" className="block text-black dark:text-white hover:text-blue-500 dark:hover:text-blue-300 text-base max-sm:text-sm">Members</a>
             <a href="#contact" className="block text-black dark:text-white hover:text-blue-500 dark:hover:text-blue-300 text-base max-sm:text-sm">Contact</a>
+
           </motion.div>
         )}
       </AnimatePresence>

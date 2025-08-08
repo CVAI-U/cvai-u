@@ -16,13 +16,23 @@ export default function Hero() {
         Welcome to <span className="text-blue-600 dark:text-blue-300">CVAI-U</span>
       </motion.h1>
       <motion.p
-        className="text-gray-600 dark:text-gray-300 text-lg md:text-xl max-w-2xl max-md:text-base"
+        className="text-gray-600 dark:text-gray-300 text-lg md:text-xl max-w-2xl max-md:text-base mb-6"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3, duration: 0.6 }}
       >
         Join our mission to explore the world of computer vision and artificial intelligence.
       </motion.p>
+      <motion.a
+        href="#projects"
+        className="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-300"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.4 }}
+        viewport={{ once: true }}
+      >
+        Explore Projects
+      </motion.a>
     </section>
   );
 }
