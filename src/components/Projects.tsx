@@ -1,20 +1,40 @@
 'use client';
-import { useState } from 'react';
+
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import projects from '@/data/projects';
 import { X } from 'lucide-react';
+import Image from 'next/image';
+
+type Project = {
+  project: string;
+  description: string;
+  Year?: string;
+  members?: string[];
+  experience?: string;
+  images?: string[];
+  contact?: string;
+};
 
 export default function Projects() {
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
-  const [selectedProject, setSelectedProject] = useState<any | null>(null);
+  // Disable body scroll when modal is open
+  useEffect(() => {
+    if (selectedProject) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+  }, [selectedProject]);
 
   return (
     <section
       id="projects"
-      className="min-h-screen flex flex-col justify-center items-center py-20 px-6 bg-gray-50 dark:bg-black text-center"
+      className="min-h-screen flex flex-col justify-center items-center py-20 px-6 bg-gray-50 text-center"
     >
       <motion.h2
-        className="text-4xl md:text-3xl font-bold mb-10 max-sm:text-2xl"
+        className="text-gray-800 text-4xl md:text-3xl font-bold mb-10 max-sm:text-2xl"
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
@@ -28,16 +48,16 @@ export default function Projects() {
         {projects.slice(0, 4).map((project, index) => (
           <motion.div
             key={index}
-            className="bg-white dark:bg-gray-900 rounded-xl shadow p-6 text-left"
+            className="bg-white rounded-xl shadow p-6 text-left"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.1 }}
             viewport={{ once: true }}
           >
-            <h3 className="text-xl md:text-lg max-md:text-base font-semibold mb-2">
+            <h3 className="text-gray-800 text-xl md:text-lg max-md:text-base font-semibold mb-2">
               {project.project}
             </h3>
-            <p className="text-gray-600 dark:text-gray-300 text-sm max-md:text-xs line-clamp-3">
+            <p className="text-gray-600 text-sm max-md:text-xs line-clamp-3">
               {project.description}
             </p>
             <button
@@ -46,9 +66,7 @@ export default function Projects() {
             >
               View More
             </button>
-            <p className="text-gray-600 dark:text-gray-300 text-sm max-md:text-xs mt-1">
-              {project.Year}
-            </p>
+            <p className="text-gray-600 text-sm max-md:text-xs mt-1">{project.Year}</p>
           </motion.div>
         ))}
       </div>
@@ -64,27 +82,28 @@ export default function Projects() {
           >
             {/* Modal Content */}
             <motion.div
-              className="bg-white dark:bg-gray-900 rounded-lg shadow-lg p-6 max-w-3xl w-full max-h-[80vh] overflow-y-auto"
+              className="relative bg-white rounded-lg shadow-lg p-6 max-w-3xl w-full min-h-[80vh] overflow-y-auto"
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
             >
-              {/* X Close Button */}
+              {/* X Close Button with tooltip */}
               <button
                 onClick={() => setSelectedProject(null)}
-                className="absolute top-4 right-4 text-white hover:text-red-500 transition"
+                className="absolute top-4 right-4 text-black hover:text-red-500 transition"
+                title="Close"
               >
                 <X className="w-6 h-6" />
               </button>
 
-              <h2 className="text-2xl max-md:text-xl font-bold mb-4">{selectedProject.project}</h2>
-              <p className="text-base max-md:text-sm text-gray-700 dark:text-gray-300 mb-4">{selectedProject.description}</p>
+              <h2 className="text-gray-800 text-2xl max-md:text-xl font-bold mb-4">{selectedProject.project}</h2>
+              <p className="text-gray-700 text-base max-md:text-sm mb-4">{selectedProject.description}</p>
 
               {selectedProject.members && (
                 <div className="mb-4">
                   <h3 className="font-semibold">Members:</h3>
-                  <ul className="list-disc pl-6 text-gray-700 dark:text-gray-300 text-base max-md:text-sm">
-                    {selectedProject.members.map((m: string, i: number) => (
+                  <ul className="list-disc pl-6 text-gray-700 text-base max-md:text-sm">
+                    {selectedProject.members.map((m, i) => (
                       <li key={i}>{m}</li>
                     ))}
                   </ul>
@@ -94,7 +113,7 @@ export default function Projects() {
               {selectedProject.experience && (
                 <div className="mb-4">
                   <h3 className="font-semibold">Experience:</h3>
-                  <p className="text-gray-700 dark:text-gray-300 text-base max-md:text-sm">{selectedProject.experience}</p>
+                  <p className="text-gray-700 text-base max-md:text-sm">{selectedProject.experience}</p>
                 </div>
               )}
 
@@ -102,12 +121,14 @@ export default function Projects() {
                 <div className="mb-4">
                   <h3 className="font-semibold">Images:</h3>
                   <div className="grid grid-cols-2 gap-4 mt-2">
-                    {selectedProject.images.map((img: string, i: number) => (
-                      <img
+                    {selectedProject.images.map((img, i) => (
+                      <Image
                         key={i}
                         src={img}
                         alt={`Project ${i}`}
                         className="rounded-lg object-cover"
+                        width={500}
+                        height={300}
                       />
                     ))}
                   </div>

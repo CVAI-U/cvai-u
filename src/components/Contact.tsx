@@ -1,18 +1,17 @@
 'use client';
 import { motion } from 'framer-motion';
-import Footer from '@/components/Footer';
 
 export default function Contact() {
   return (
     <section
       id="contact"
-      className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-black px-6 py-20"
+      className="min-h-screen flex items-center justify-center bg-gray-100 px-6 py-20"
     >
       <div className="max-w-7xl w-full flex flex-col md:grid md:grid-cols-2 gap-16 items-start">
         
         {/* Left Column: Paragraph + CTA */}
         <motion.div
-          className="flex flex-col justify-between space-y-12 text-gray-800 dark:text-gray-100 text-xl max-sm:text-sm max-sm:text-center leading-relaxed"
+          className="flex flex-col justify-between space-y-12 text-gray-800 text-lg max-sm:text-sm max-sm:text-center leading-relaxed"
           initial={{ opacity: 0, x: 30 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
@@ -21,19 +20,19 @@ export default function Contact() {
           {/* Row 1: Paragraph */}
           <div>
             <p>
-              Whether you're a student interested in AI, a researcher looking for collaboration, 
+              Whether you&apos;re a student interested in AI, a researcher looking for collaboration, 
               or a company seeking to integrate computer vision solutions—CVAI-U is open to meaningful partnerships.
-              Reach out to us for project opportunities, support, or any inquiries. We’re here to help and innovate together.
+              Reach out to us for project opportunities, support, or any inquiries. We&apos;re here to help and innovate together.
             </p>
           </div>
 
           {/* Row 2: CTA */}
           <div className="text-center items-center">
-            <h2 className="text-4xl max-sm:text-2xl font-bold mb-4 text-black dark:text-white">Get In Touch</h2>
-            <p className="text-gray-700 dark:text-gray-300 mb-6">We'd love to hear from you or collaborate on exciting AI projects!</p>
+            <h2 className="text-4xl max-sm:text-2xl font-bold mb-4 text-black">Get In Touch</h2>
+            <p className="text-gray-700 mb-6">We&apos;d love to hear from you or collaborate on exciting AI projects!</p>
             <a
-              href="mailto:your_email@example.com"
-              className="inline-block bg-blue-600 text-white dark:bg-blue-700 px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-300"
+              href="mailto:cvai.reda.ams@gmail.com"
+              className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-300"
             >
               Contact Us
             </a>

@@ -1,11 +1,5 @@
 'use client';
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import members from "@/data/members"
-import project from "@/data/projects";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Projects from '@/components/Projects';
@@ -23,7 +17,9 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-black " data-theme="dark">
+    <div 
+      className="min-h-screen bg-white bg-cover bg-center bg-fixed"
+    >
       <Header scrolled={scrolled} />
       <main className="flex-grow">
         <Hero />
