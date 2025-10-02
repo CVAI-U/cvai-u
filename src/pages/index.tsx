@@ -1,5 +1,6 @@
 'use client';
 import { useEffect, useState } from "react";
+import Head from "next/head"; // <-- import Head
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Projects from '@/components/Projects';
@@ -17,9 +18,13 @@ export default function Home() {
   }, []);
 
   return (
-    <div 
-      className="min-h-screen bg-white bg-cover bg-center bg-fixed"
-    >
+    <div className="min-h-screen bg-white bg-cover bg-center bg-fixed">
+      {/* Page title */}
+      <Head>
+        <title>CVAI Unit</title>
+        <meta name="description" content="Computer Vision and AI Unit at ITC" />
+      </Head>
+
       <Header scrolled={scrolled} />
       <main className="flex-grow">
         <Hero />
