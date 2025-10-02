@@ -37,7 +37,7 @@ export default function Header({ scrolled }: { scrolled: boolean }) {
     >
       {/* Logo */}
       <motion.img
-        src="images/CVAI-U_logo.jpg"
+        src="images/CVAI-U_logo.png"
         alt="Logo"
         className={`transition-all duration-500 rounded-xl cursor-pointer
           ${scrolled ? 'w-8 h-8 md:w-10 md:h-10 max-md:w-8 max-md:h-8' : 'w-12 h-12 md:w-14 md:h-14 max-md:w-10 max-md:h-10'}
